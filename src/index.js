@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import MultiGroup from "./MultiGroup";
 import Select from "./Select";
 
-import MOCK_CUSTOM_FIELD_DEFINITIONS from "./data";
 import useFetchFields from "./hooks/useFetchFields";
 
 const fieldComponentMap = {
