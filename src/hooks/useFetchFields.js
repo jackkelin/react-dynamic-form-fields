@@ -53,20 +53,25 @@ function useFetchFields() {
       if (data && optionsToFetch) {
         let _data = data;
         const requests = optionsToFetch.map(o => fetch(o.url, { type: "GET" }));
-        const responses = await Promise.all(requests);
-        const jsonArr = await Promise.all(responses.map(r => r.json()));
-        jsonArr.forEach((json, i) => {
-          const fieldId = optionsToFetch[i].id;
-          _data = _data.map(d => {
-            if (d.id === fieldId) {
-              // we should handle data based off field type, this will be tricky!
-              d.attributes.selectOptions = transform.users.deserialize(json);
-            }
-            return d;
+        try {
+          const responses = await Promise.all(requests);
+          const jsonArr = await Promise.all(responses.map(r => r.json()));
+          jsonArr.forEach((json, i) => {
+            const fieldId = optionsToFetch[i].id;
+            _data = _data.map(d => {
+              if (d.id === fieldId) {
+                // we should handle data based off field type, this will be tricky!
+                d.attributes.selectOptions = transform.users.deserialize(json);
+              }
+              return d;
+            });
           });
-        });
-        setData(_data);
-        setOptionsToFetch(undefined);
+          setData(_data);
+          setOptionsToFetch(undefined);
+          // do we want to change loading state here?
+        } catch (error) {
+          setError(true);
+        }
       }
     })();
   }, [data, optionsToFetch]);
