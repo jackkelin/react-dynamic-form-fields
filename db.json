@@ -7,7 +7,7 @@
         "fieldTypeDisplay": "Dropdown List",
         "tabName": "Questionnaire",
         "groupName": "Accredited Investor Questionnaire",
-        "optionsUri": "https://jsonplaceholder.typicode.com/users",
+        "optionsUri": "http://localhost:3004/users",
         "name": "Investors",
         "fieldType": "DROPDOWN",
         "required": false,

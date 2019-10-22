@@ -20,8 +20,6 @@ const fieldComponentMap = {
 function App() {
   const [fieldState, setFieldState] = useState({});
   const [data, isLoading, errored] = useFetchFields();
-  // fetch fields
-  // based off field data detch option data
 
   const applyAdditionalFieldProps = fieldData => {
     // Apply props based off fieldType
@@ -63,6 +61,8 @@ function App() {
     <div className="App">
       <h2>Form fields generated from mock data</h2>
       <hr />
+      {isLoading && "Loading.."}
+      {errored && "Opps.."}
       {data && renderFields(data)}
       <hr />
       <p>Display state below:</p>
