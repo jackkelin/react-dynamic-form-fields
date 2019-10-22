@@ -38,7 +38,6 @@ function useFetchFields() {
         const json = await response.json();
         setData(json);
         const fieldsWithOptionUrls = getOptionUrls(json);
-        console.log("2. fieldsWithOptionUrls", fieldsWithOptionUrls);
         setOptionsToFetch(fieldsWithOptionUrls);
         setLoading(false);
       } catch (error) {
